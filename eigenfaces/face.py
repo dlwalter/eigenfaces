@@ -12,10 +12,12 @@ import os
 import imageio
 from PIL import Image
 
+
 class face_classifier(object):
     
-    def __init__(self):
-        logging.debug('__init__ class')
+    def __init__(self, logger=None):
+        self.logger = logger or logging.getLogger(__name__)
+        self.logger.debug('__init__ class')
         self.learning_set_a = None
         self.learning_set_b = None
         self.mean_a         = None
@@ -47,7 +49,7 @@ class face_classifier(object):
         images_v_m = self.sub_mean_image(images_v, self.image2vector(m_image))
         training_array = self.cat_vectors(images_v_m)
         image_cov = np.cov(np.transpose(training_array))
-        #logging.debug('Performing SVD on Image Covariance Matrix')
+        self.logger.debug('Performing SVD on Image Covariance Matrix')
         U, E, Vh = np.linalg.svd(image_cov, full_matrices=False)
         eigenface_set = []
         for k in range(16):
@@ -57,27 +59,27 @@ class face_classifier(object):
         return eigenface_set;
     
     def set_learning_set_a(self, dir):
-        logging.debug('calling self.get_learning_set_a')
+        self.logger.debug('calling self.get_learning_set_a')
         self.learning_set_a = self.set_learning_set(dir)
         self.mean_a         = self.mean_image(self.learning_set_a)
         self.eigenfaces_a   = self.calc_eigenfaces(self.learning_set_a, self.mean_a)
      
     def set_learning_set_b(self, dir):
-        logging.debug('calling self.get_learning_set_b')
+        self.logger.debug('calling self.get_learning_set_b')
         self.learning_set_b = self.set_learning_set(dir)
         self.mean_b         = self.mean_image(self.learning_set_b)
         self.eigenfaces_b   = self.calc_eigenfaces(self.learning_set_b, self.mean_b)
     
     def set_learning_set(self, dir):
-        logging.debug('calling get_learning_set')
+        self.logger.debug('calling get_learning_set')
         return self.pad_images(self.resize_images(self.import_images(dir)))
 
     def import_images(self, dir):
         #imports images from directory DIR (defaults to current directory)
-        logging.debug('calling import images')
+        self.logger.debug('calling import images')
         images = []
         path, dirs, files = next(os.walk(dir))
-        logging.debug('Importing ' + str(len(files))+ ' images from ' + dir)
+        self.logger.debug('Importing ' + str(len(files))+ ' images from ' + dir)
         for filename in files:
             if filename[-3:]=='jpg':
                 images.append(imageio.imread(dir + filename)) 

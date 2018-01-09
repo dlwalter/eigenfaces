@@ -2,16 +2,21 @@
 from matplotlib import pyplot as plt
 import eigenfaces.face as face
 import logging
+import logging.config
 
-logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s- %(message)s')
+logging.config.fileConfig('logging.conf')
+# create logger
+logger = logging.getLogger(__name__)
+#logger_face = logging.getLogger('face')
 
+logger.debug('Create classifier')
 fc = face.face_classifier()
 
 fc.set_learning_set_a('images/learning/faces/')
 fc.set_learning_set_b('images/learning/smiling_faces/')
 
 images_s = fc.get_learning_set_a()
-
+logger.debug('get mean image')
 mean_s = fc.get_mean_a()
 
 plt.figure()
