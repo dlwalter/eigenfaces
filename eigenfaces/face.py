@@ -121,8 +121,8 @@ def normalize(image):
     return n_image;
 
 #import image into workspace
-face_dir = 'images/faces/'
-smiling_dir = 'images/smiling_faces/'
+face_dir = '../images/faces/'
+smiling_dir = '../images/smiling_faces/'
 
 #image file format - 1a.jpg
 re_face_key = re.compile(r'\d+[a].\w{3}')
