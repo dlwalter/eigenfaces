@@ -9,15 +9,8 @@ Created on Sat Jan  6 14:27:23 2018
 import logging
 import numpy as np 
 import os
-import re
 import imageio
-import random
-from matplotlib import pyplot as plt
 from PIL import Image
-
-IMG_SIZE = 64
-
-logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s- %(message)s')
 
 class face_classifier(object):
     
