@@ -8,10 +8,10 @@ This can then be used to classify the faces for example as smiling or not smilin
 
 Here is the average face from the training set:
 
-![Average Face](https://raw.githubusercontent.com/dlwalter/face/master/figures/avg_face.png)
+![Average Face](https://raw.githubusercontent.com/dlwalter/eigenfaces/master/figures/avg_face.png)
 
 Here we see the first 16 computed smiling eigenfaces and non-smiling eigenfaces
 
-![Smiling Eigenfaces](https://raw.githubusercontent.com/dlwalter/face/master/figures/smiling_ef.png)
+![Smiling Eigenfaces](https://raw.githubusercontent.com/dlwalter/eigenfaces/master/figures/smiling_ef.png)
 
-![Average Face](https://raw.githubusercontent.com/dlwalter/face/master/figures/nonsmiling_ef.png)
+![Average Face](https://raw.githubusercontent.com/dlwalter/eigenfaces/master/figures/nonsmiling_ef.png)
